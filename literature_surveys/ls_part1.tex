@@ -1,0 +1,60 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{csquotes}
+
+\usepackage{lipsum} % for dummy text
+
+\title{Data Science with Knowledge Graph \\{\large Literature Survey - part 1}}
+\author{Shawn Azdam}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+In this survey, I'm going to review a handful of body of works have been done so far in information retrieval literature powered by neural network-enhanced machine learning techniques.
+
+
+\section{Automatic Query Reformulation}
+As a query reformulation task with a [deep] reinforcement learning approach, authors in \cite{Nogueira2017} tried to present the followings in form of a comprehensive effort:
+\begin{enumerate}
+    \item Restructure query using a reinforcement learning-flavored approach which leads to presenting two parallel neural network at the heart of this model as the the contextual captors.
+    \item Fortify the proposed model's reliability by showing how better this model can perform in terms of confidence interval and through discussing upper-bound performance.
+    \item Apply these multi-flavor methods to a variety of existing datasets or newly-introduced one.
+\end{enumerate}
+
+The two parallel neural network in \cite{Nogueira2017} has been fed with vector representations ($v_j$ and $e_i$) of their respective sequences of words ($w_j$ and $t_i$), in the original query $q_0$ and in the candidate terms with context words $q_0 \cup D_0$, respectively. Each of the convolutional neural network (CNN) or recurrent neural network (RNN) carries beneficial and distinct roles at the infrastructure of the proposed approach to build up vector representations out of the original and the candidate terms. The former speeds up in processing candidate terms and the latter, on the other hand, can inherently capture longer contextual information. Later on, by collecting value network, we can frame the baseline reward $\bar{R}$ in the RL framework:
+\begin{equation}
+    \overline { R } = \sigma \left( S ^ { \top } \tanh \left( V \left( \phi _ { a } ( v ) \| \overline { e } \right) + b \right) \right),
+\end{equation}
+
+and by retrieving weights $W$ and $U$, we can express probability of taking action of selecting $t_i$: 
+\begin{equation}
+    P \left( t _ { i } | q _ { 0 } \right) = \sigma \left( U ^ { \top } \tanh \left( W \left( \phi _ { a } ( v ) \| \phi _ { b } \left( e _ { i } \right) \right) + b \right)\right..
+\end{equation}
+
+On another note, they have addressed the issues with sequence generation by cleverly adopting recurrent networks based on their inherent properties through which one can make sure that duplicates in the yielded query or overlong queries doesn't exist in the final set of generated queries from the mentioned network.
+
+Experiment-wise and cast in a comparison, the authors has tried to benchmark their bifurcated groups of proposed methods, in supervised and reinforcement learning settings, besides other close nominees explored in the literature. As it could be inferred from the presented results, RL-RNN which has outperformed other proposed configurations of methods, pseudo-relevance feedback models such as  relevance model (PRF-RM)\cite{Lavrenko2001}, and embedding similarity models (PRF-Emb and Vocab-Emb)\cite{Roy2016}, \cite{Kuzi}. Conceptually named \textit{oracle} models as two upper-bound operating counterpart to the proposed methods, on the other side, try to show an safety operational margin for both SL and RL approaches which is debatable. I may, hereby, argue that the assumption of independent contribution of each single term to the retrieval performance has not evidenced the possible deterioration of each term to the final retrieval task.
+
+I also has reviewed other related papers such as \cite{Narasimhan2016} which discusses template queries  
+
+\section{Passage Re-Ranking}
+As a recent work \cite{Devlin2018} tried to introduce a platform, namely Bidirectional Encoder Representations from
+Transformers (BERT), for a variety of NLP tasks by crafting a transformer encoder architecture. The provided environment, BERT, could easily be calibrated to be used in context of various tasks which spectacularly prevail other competitors. In \cite{Devlin2018} authors have tried to exemplify the superior performance by showing results for 11 NLP tasks discussed by the community. In another more recent work \cite{Nogueira2019} has tried to apply this model to TREC CAR \cite{Dietz} dataset which is the leading competitor by now.
+
+Unlike \cite{Radford} which proposed OpenAI GPT as unidirectional representation method, BERT utilizes bidirectional language model in pre-training phase. Another very close work in concept but not in size of work is \cite{Peters2018}. in \cite{Peters2018} they have followed a two separted LTR and RTL language models and then merged them to shape a quasi-bidirectional model.
+
+
+\section{Conclusion}
+Information retrieval (IR) as field of NLP have been evolved recently in major aspects. Concepts and ideas adopted from machine learning and especially deep learning (DL) --as a recent focal point-- opened new horizons to the community of researchers. The results are promising enough to absorb attentions and efforts in revitalizing already investigated areas. 
+
+As it pointed out in two discussed fields above, A mastery in connecting DL and IR synopses together could possibly amount to astonishing results. Optimization in terms of either query (e.g. query processing) as an input or ranking (e.g. passage re-ranking) of a retrieval task is possible via implementing advocated methods by the reviewed papers. Further studies might be of area of interest in harnessing and combining these two aspects of an IR task.
+
+\bibliographystyle{nips}
+\bibliography{library}
+
+\end{document}

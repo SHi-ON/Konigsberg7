@@ -1,4 +1,5 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[letterpaper,12pt]{article}
+
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 
@@ -29,5 +30,13 @@ According to the two mentioned papers, we clearly get a whole picture of how the
 
 \section{Graph Walking}
 The paper proposes computing a set of PageRank vectors as it contrasts with a single PageRank vector. The author also adds that adding contextual orientation by a set of representative topics selected to cover the significance of each topic. This query-specific approach -as it has been showed- can result in higher accuracy in ranking compared to the generic vector of PageRank (PR). After pointing out the three past works done related to HITS algorithms, He quickly describes PR advantages over HITS wrapped up in two fields, query-time cost efficacy, and localized link spam prevention. Later two scenarios are discussed, first is so-called conventional querying the search engine and then \textit{search in context}. In order to frame the this paper's approach, I have reached to two distinct modes. In \textit{offline mode}, 16 biased topic-sensitive PR vectors are generated. At \textit{query time}, the similarity of the query to each vector is generated. By utilizing a linear combination of the query-specific weighted topic-sensitive vectors to build up a composite PageRank score, a higher accuracy in getting significantly related results to the query (if available, query context) will be achievable. Two phases have important roles when it comes to the performance of this method, first offline generating biased PageRank vectors utilizing a stack of basis topics during the pre-processing stage of the Web crawl and then query-sensitive PageRank computation which has been done during query time starting with computing class probabilities for each of 16 top-level Open Directory Project (ODP) classes using a unigram language model. The author then illustrated the results which have two scopes. By studying the pairwise topically-biased results we realize that ODP-biasing has tangibly improved rankings which also makes sense intuitively. Figure 1 clearly depicts improvement over precision and along with the manual selected ranking by users show that query-sensitive scores desirably performs better. In the end, the paper points out flexibility, transparency, privacy, and efficiency in the source of the search context.
+
+\section{Entity Linking}
+
+
+\section{Notes}
+pair t test: 
+2nd t statistc
+
 
 \end{document}
