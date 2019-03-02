@@ -32,11 +32,64 @@ According to the two mentioned papers, we clearly get a whole picture of how the
 The paper proposes computing a set of PageRank vectors as it contrasts with a single PageRank vector. The author also adds that adding contextual orientation by a set of representative topics selected to cover the significance of each topic. This query-specific approach -as it has been showed- can result in higher accuracy in ranking compared to the generic vector of PageRank (PR). After pointing out the three past works done related to HITS algorithms, He quickly describes PR advantages over HITS wrapped up in two fields, query-time cost efficacy, and localized link spam prevention. Later two scenarios are discussed, first is so-called conventional querying the search engine and then \textit{search in context}. In order to frame the this paper's approach, I have reached to two distinct modes. In \textit{offline mode}, 16 biased topic-sensitive PR vectors are generated. At \textit{query time}, the similarity of the query to each vector is generated. By utilizing a linear combination of the query-specific weighted topic-sensitive vectors to build up a composite PageRank score, a higher accuracy in getting significantly related results to the query (if available, query context) will be achievable. Two phases have important roles when it comes to the performance of this method, first offline generating biased PageRank vectors utilizing a stack of basis topics during the pre-processing stage of the Web crawl and then query-sensitive PageRank computation which has been done during query time starting with computing class probabilities for each of 16 top-level Open Directory Project (ODP) classes using a unigram language model. The author then illustrated the results which have two scopes. By studying the pairwise topically-biased results we realize that ODP-biasing has tangibly improved rankings which also makes sense intuitively. Figure 1 clearly depicts improvement over precision and along with the manual selected ranking by users show that query-sensitive scores desirably performs better. In the end, the paper points out flexibility, transparency, privacy, and efficiency in the source of the search context.
 
 \section{Entity Linking}
+In this survey paper, I'm trying to frame the whole picture in form of a bullet list. Authors in this paper tried to present a a comprehensive survey for entity linking. Specifically, they have surveyed the main approaches utilized in the three modules of entity linking systems (i.e., Candidate Entity Generation, Candidate Entity Ranking, and Unlinkable Mention Prediction), and also introduced other critical aspects of entity linking such as applications,features, and evaluation. One can define Entity linking as a task of mapping named entity mention $\m \in M$ available in an unstructured text (without attributes) to corresponding entity $e \in E$ in a knowledge base (with attributes). Three main stages in an entity linking systems are candidate \textit{entity generation}, \textit{candidate entity ranking}, and \textit{unlinkable mention prediction}, which could be applicable to several tasks such as information extraction, information retrieval, content analysis, question answering, and finally knowledge base population.
 
+\begin{itemize}
+    \item Candidate Entity Generation
+\begin{itemize}
+    \item Name dictionary based techniques: the structure of Wikipedia provides a
+set of useful features for generating candidate entities,
+such as entity pages, redirect pages, disambiguation
+pages, bold phrases from the first paragraphs, and
+hyperlinks in Wikipedia articles. These entity linking
+systems leverage different combinations of these
+features to build an offline name dictionary $D$
+between various names and their possible mapping
+entities, and exploit this constructed name dictionary
+$D$ to generate candidate entities. Query click log and web documents to find entity synonyms are also helpful in name dict construction.
+    \item Surface form expansion from the local document: identifying other possible expanded variations (such as
+the full name) from the associated document where
+the entity mention appears which could be discussed in form of heuristic based methods or supervised methods (finds more sophisticated acronyms).
+    \item Methods based on search engines: identifying candidates from web search engines such as Google or Wikipedia search engine.
+\end{itemize}
 
-\section{Notes}
-pair t test: 
-2nd t statistc
+\item Candidate Entity Ranking
+this is a key component for the entity linking system. We can broadly divide these candidate entity ranking methods into two categories, Supervised and Unsupervised ranking methods. One can categorise methods in three other groups based on documents dependency such as \textit{independent}, \textit{collective}, and \textit{collaborative}\textit{ ranking methods}.
+\begin{itemize}
+    \item Candidate entity ranking features: two categories are discussable here based on context dependency. Context independent features just rely on the surface form of the entity mention and the knowledge about the candidate entity, and are not related to the context where the entity mention appears. Context-dependent features are based on the context where the entity mention appears. Two forms to represent the textual context could be found like Bag of words and concept vector. Here there is an interesting discussed concept  coherence between mapping entities which could be defined between two Wikipedia entities $v_1$ and $v_2$ as follows:
+    \begin{equation}
+        \operatorname { Coh } _ { G } \left( u _ { 1 } , u _ { 2 } \right) = 1 - \frac { \log \left( \max \left( \left| U _ { 1 } \right| , \left| U _ { 2 } \right| \right) \right) - \log \left( \left| U _ { 1 } \cap U _ { 2 } \right| \right) } { \log ( | W P | ) - \log \left( \min \left( \left| U _ { 1 } \right| , \left| U _ { 2 } \right| \right) \right) }
+    \end{equation}
+    \item Supervised entity ranking: these methods learn to assign proper mapping entity to each entity mention.
+        \begin{itemize}
+            \item Binary classification methods: binary classifier to decide if the entity mention refers to the candidate entity.
+            \item Learning to rank methods: automatically construct a ranking model from training data. Most of such systems uses SVM methods.
+            \item Probabilistic methods: modeling in combination with pairwise document-level topical coherence of candidate entities using a probabilistic graphical model.
+            \item Graph based approaches: an inference algorithm to jointly infer mapping entities of all entity mentions in the same document based on a graph based representation \textit{Referent Graph}.
+            \item Model combination: combining different learning algorithms to obtain better predective performance.
+            \item Training data generation: manually created data set containing of thousands of labeled entities.
+        \end{itemize}
+    \item Unsupervised ranking methods:
+        \begin{itemize}
+            \item VSM based methods: using vector space model to represent similarity between entity mentions and candidate entity.
+            \item IR based methods: indexing each candidate as a document and generating query for each mention.
+        \end{itemize}
+\end{itemize}
 
+\item Unlinkable Mention Prediction
+In practice, some entity mention does not have its corresponding record in a knowledge base. Therefore, they have to deal with the problem of predicting unlinkable mentions.
+\end{itemize}
 
+Name variation and entity ambiguity are two challenges which an entity linking task may face. Other similar available task in the literature to entity linking are as follows:
+\begin{itemize}
+    \item Entity co-referencing: without presence of a knowledge base.
+    \item Word sense disambiguation: identifying sense of a word instead of a named entity.
+    \item Record linkage: matching records from multiple sources (rather than one knowledge base) which refer to the same entity.
+\end{itemize}
+
+For the sake of evaluation, some measures like precision, recall, F1-measure, and accuracy are informative to calculate.
+Although so many methods are discussed here in this paper, but there are still some unaddressed points in the literature which they propose as a future pathway.
+
+\section{Knowledge Graph}
+Knowledge graphs model information in the form of entities (\textit{subject}, \textit{object}) and relationships between them (\textit{predicate}) (In form of SPO triples in this paper). Statistical relational learning (SRL) has been used to identify and make relationship between entities.There are two main classes of SRL techniques: those that capture the correlation between the nodes/edges using latent variables, and those that capture the correlation directly using statistical models based on the observable properties of the graph. KGs can provide type hierarchy and type constraints. Different paradigms for the interpretation of non-existing triples are closed and open world assumptions (\textit{CWA}, \textit{OWA}). Knowledge base construction method can come in 4 categories: curated, collaborative, automated semi-structured, and automated unstructured. Despite the accuracy in semi-structured KGs coverage is another important issue of them. KGs could be categorize in either being \textit{schema-based} or \textit{schema-free} while the majority of KGs are from the former one. Common KG tasks are as follows: Link prediction, Entity resolution, and Link-based clustering. As an application to TREC CAR task, one may propose to use KG to enhance our search results in TREC CAR. In this way, we turned the existing query(text)-based search into a semantically aware one.
 \end{document}
