@@ -108,4 +108,13 @@ from knowledge bases, as opposed to utilization of knowledge
 bases in retrieval. Major open source knowledge bases typically adopt Resource Description Framework (RDF) data model and are published as part of the Linked Open Data (LOD) cloud commonly referred to as the Web of Data. Individual RDF datasets in the Web of Data can be considered as massive graphs, in which the nodes are the entities (resources) and the edges are semantic relations between the entities. Each resource describes an object in the Web of Data, which can either be a real entity or an abstract concept (special relativity). The relations between the entities are represented as subject-predicate-object triples. Moreover, authors a five-field entity representation scheme in which the first two fields are the properties of the entities themselves. Other fields capture information from different entities that are related to the given entity. They demonstrated that having different field weighting schemes for unigrams and bigrams is effective for different types of queries in ad-hoc entity retrieval scenario. Experimental
 evaluation of FSDM on a standard publicly available benchmark showed that it consistently and, in most cases, statistically significantly outperforms state-of-the-art structured and unstructured retrieval models for ERWD.
 
+\section{Latent Entity Space}
+This paper proposes Latent Entity Space (LES) a retrieval approach which models document relevance using entity profiles to delineate semantic content of queries and documents. In LES as an entity-based space, each entity corresponds to one dimension, representing one semantic relevance aspect. In the paper, each dimension is represented with the profile of the corresponding entity. Information from document collection and knowledge bases are used to construct an entity profile. 
+
+In comparison to concept-based IR approaches, LES does not modify the representation of queries and documents. LES leverages entity profiles as a bridge to measure semantic relevance between queries and documents. This approach is also computationally efficient because the entity model could be obtained offline. Instead of performing query expansion, LES leverages the information from knowledge bases to build entity profiles.
+
+Experimental results demonstrated that LES is capable of capturing additional semantic content missed by existing models including the Relevance Model and Latent Concept Expansion.
+
+\section{Using Relations for IR}
+
 \end{document}
