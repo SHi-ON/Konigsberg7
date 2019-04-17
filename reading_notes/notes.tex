@@ -115,6 +115,7 @@ In comparison to concept-based IR approaches, LES does not modify the representa
 
 Experimental results demonstrated that LES is capable of capturing additional semantic content missed by existing models including the Relevance Model and Latent Concept Expansion.
 
-\section{Using Relations for IR}
+\section{Open Relation Extraction for Support Passage Retrieval}
+The paper examines and reports the utilization of an unsupervised relation extraction system, ClausIE --which is OpenIE at the core-- in a passage retrieval task. Relation extraction, using recognizing sentence structure and grammar takes an input sentence Q and describes the relation between that and entities $e_i$ in a knowledge base.The procedure in the paper is, firstly forming a set of candidate sentences for a given query Q and entity $e_i$. Then, candidate sentences are ranked by RankLib --as a learning to rank method which learns by optimizing for the MAP scores--. In a nutshell, after retrieving relevant sentences with the query using an external system, open relation extraction system which shows the relevance between query sentence and a knowledge base entity, optimizes for MAP score to train a learning to rank method to rank relevant support passages.As figure 1 shows, using high-level features in ClausIE which uses a weighted set of features (e.g. part-of-speech, relevance at term-level, named entity recognition, etc.) outperforms individual features. Several ideas are pointed out in the work. for example, table 2 suggests combining query terms heuristic (recall wise) and relation extraction (precision wise) has the potential for further investigations. 
 
 \end{document}
